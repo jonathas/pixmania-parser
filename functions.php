@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Returns the html fetched by curl
+ * @param $url
+ * @return mixed
+ */
 function getPage($url)
 {
     $ch = curl_init();
@@ -12,11 +17,21 @@ function getPage($url)
     return $html;
 }
 
+/**
+ * Returns the parsed text, without the html tags and trimmed
+ * @param $text
+ * @return string
+ */
 function formatParsedText($text)
 {
     return trim(strip_tags(str_replace("&pound;&nbsp;","",$text)));
 }
 
+/**
+ * Returns if the item is in stock
+ * @param $text
+ * @return string
+ */
 function isInStock($text)
 {
     if(strpos(formatParsedText($text),"In stock") === false)
